@@ -15,7 +15,8 @@ request(
       return
     }
     for (let i = 0; i < books.length; i++) {
-      console.log(books[i].id + books[i].name)
+      const space = ' '
+      console.log(books[i].id + space + books[i].name)
     }
   }
 )
