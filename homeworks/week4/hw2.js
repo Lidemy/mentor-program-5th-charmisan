@@ -20,7 +20,7 @@ if (input === 'list') {
 
 function listBook(list) {
   request(
-    `${baseUrl}/ooks?_limit=20`,
+    `${baseUrl}/books?_limit=20`,
     (error, response, body) => {
       if (error) {
         console.log(error)
@@ -43,7 +43,7 @@ function listBook(list) {
 
 function readBook(read, id) {
   request(
-    `${baseUrl}/${id}`,
+    `${baseUrl}/books/${id}`,
     (error, response, body) => {
       if (error) {
         console.log(error)
@@ -64,7 +64,7 @@ function readBook(read, id) {
 
 function deleteBook(de, id) {
   request.delete(
-    `${baseUrl}/${id}`,
+    `${baseUrl}/books/${id}`,
     (error, response, body) => {
       if (error) {
         console.log(error)
@@ -78,7 +78,7 @@ function deleteBook(de, id) {
 function createBook(create, bookName) {
   request.post(
     {
-      url: `${baseUrl}`,
+      url: `${baseUrl}/books`,
       form: { name: bookName }
     },
     (error, response, body) => {
@@ -102,7 +102,7 @@ function createBook(create, bookName) {
 function updateBook(update, id, bookName) {
   request.patch(
     {
-      url: `${baseUrl}/${id}`,
+      url: `${baseUrl}/books/${id}`,
       form: { name: bookName }
     },
     (error, response, body) => {
