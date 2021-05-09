@@ -34,8 +34,7 @@ function listBook(list) {
         return
       }
       for (let i = 0; i < books.length; i++) {
-        const space = ' '
-        console.log(books[i].id + space + books[i].name)
+        console.log(books[i].id, books[i].name)
       }
     }
   )
@@ -56,8 +55,7 @@ function readBook(read, id) {
         console.log(error)
         return
       }
-      const space = ' '
-      console.log(book.id + space + book.name)
+      console.log(book.id, book.name)
     }
   )
 }
@@ -93,8 +91,7 @@ function createBook(create, bookName) {
         console.log(error)
         return
       }
-      const space = ' '
-      console.log(book.id + space + book.name)
+      console.log(book.id, book.name)
     }
   )
 }
@@ -117,8 +114,7 @@ function updateBook(update, id, bookName) {
         console.log(error)
         return
       }
-      const space = ' '
-      console.log(book.id + space + book.name)
+      console.log(book.id, book.name)
     }
   )
 }
