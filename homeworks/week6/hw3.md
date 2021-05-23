@@ -38,5 +38,5 @@
 - static: 不跳脫排版流不以特殊位置來排列的預設狀態
 - relative: 不跳脫排版流以原來的位置當作原點去做移動
 - fixed: 跳脫排版流以視窗為原點來移動
-- absolute: 跳脫排版流以特定元素為原點來移動
+- absolute: absolute 的定位點是往上找第一個 position 不是 static 的元素，跳脫排版流以特定元素為原點來移動
 
