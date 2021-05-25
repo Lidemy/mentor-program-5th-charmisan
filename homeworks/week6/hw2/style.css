@@ -1,0 +1,82 @@
+body {
+	background: rgba(0,0,0,0.3);
+}
+.wrapper {
+  max-width: 645px;
+  background: white;
+  margin: 10% auto;
+  box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+  border-top: solid 8px #fad312;
+  padding: 54px 42px;
+}
+.form__header h1{
+	margin: 0;
+	font-size: 36px;
+	font-weight: bold; 
+}
+.form__header p{
+	margin-top: 35px;
+	font-size: 14px;
+	line-height: 1.5em
+}
+.form__header .high__light {
+	margin-top: 22px;
+	font-size: 16px;
+	color: #e74149;
+	margin-bottom: 55px;	
+}
+.form__question {
+	margin-bottom: 52px;
+	font-size: 20px;
+}
+.form__question div, .form__how__question div, .form__other__question div{
+	margin-bottom: 24px;
+}
+.form__question input, .form__how__question input, .form__other__question input{
+	border:  solid 1px #d0d0d0;
+	font-size: 16px;
+	padding: 8px;
+}
+.redlight {
+	color: #e74149;
+}
+.form__how__question {
+	margin-bottom: 48px;
+	margin-top: 51px;
+	font-size: 20px;
+}
+.form__other__question {
+	margin-bottom: 58px;
+	margin-top: 51px;
+	font-size: 20px;
+}
+.answer{
+	font-size: 14px;
+	margin-bottom: 23px;
+}
+.content {
+	margin-bottom: 24px;
+	margin-top: 12px;
+	font-size: 14px;
+}
+.apply-form__submit {
+	display: inline-block;
+	margin-bottom: 21px;
+	font-size: 15px;
+	background: #fad312;
+	color: black;
+	padding: 13px 32px;
+	border: none;
+	border-radius: 4px;
+}
+.remind {
+	margin-bottom: 35px;
+	font-size: 14px;
+}
+footer {
+	background: black;
+	color: #999999;
+	font-size: 13px;
+	text-align: center;
+	padding: 24px 12px;
+}
