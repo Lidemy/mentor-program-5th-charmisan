@@ -1,0 +1,76 @@
+body {
+	background: rgba(0,0,0,0.3);
+}
+.wrapper {
+  max-width: 645px;
+  background: white;
+  margin: 10% auto;
+  box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+  border-top: solid 8px #fad312;
+  padding: 54px 42px;
+}
+h1{
+	text-align: center;
+	color:#1F6866;
+  font-family:monospace;
+  font-size: 40px;
+  padding: 5px;
+}
+
+footer {
+	background: black;
+	color: #999999;
+	font-size: 13px;
+	text-align: center;
+	padding: 24px 12px;
+}
+.todo__input-block{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 16px;
+}
+.todo__input{
+  width: 580px;
+  border: none; 
+  border-bottom: 3px solid #EDD29F;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+.btn-new {
+	border-radius: 50%;
+	font-size: 20px;
+	color: white;
+	background: #c1d245;
+}
+.todo__list{
+	border: 3px solid #EDD29F;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 30px 0px;
+}
+.todo{
+	display: flex;
+	justify-content: space-between;
+	margin-left: 12px;
+	margin-right: 10px;
+	border-radius: 8px;
+}
+
+p {
+	display: inline-block;
+	font-size: 20px;
+}
+
+.btn-delete{
+	border-radius: 50%;
+	color: white;
+	background: #3bc9da;
+	width: 35px;
+	height: 35px;
+	margin-top: 15px;
+}
+input[type=checkbox]:checked + p{
+  text-decoration: line-through;
+  color: grey;
+}
