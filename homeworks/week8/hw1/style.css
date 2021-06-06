@@ -1,0 +1,263 @@
+*{
+  box-sizing:border-box ;
+}
+.navbar {
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+ }
+.navbar .wrapper {
+  display:  flex;
+  justify-content: space-between;
+  align-items: center;
+  height:  84px;
+  background: white;
+  padding: 0px 20px;
+}     
+.navbar__site-name {
+	color: #489846;
+	font-size: 36px;
+}
+.navbar__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	font-size: 18px;
+}
+.navbar__list li{
+	margin-left: 12px;
+	border-radius: 8px;
+  transition: background 0.1s; 
+}
+.navbar__list li.active, .navbar__list li:hover {
+	background: #ff7286;
+}
+.navbar__list li a{
+  display: block;
+	text-decoration: none;
+	color: black;
+  padding: 12px 24px; 
+}
+.navbar__list li.active a, .navbar__list li:hover a{
+	color: white;
+}
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0px 12px;
+}
+.banner {
+  height: 446px;
+  background: url(../res1.png) center/cover no-repeat;
+}
+.banner.first-prize {
+  height: 446px;
+  background: url(../p1.png) center/cover no-repeat;
+}
+.banner.second-prize {
+  height: 446px;
+  background: url(../p1.png) center/cover no-repeat;
+}
+.banner.third-prize {
+  height: 446px;
+  background: url(../p1.png) center/cover no-repeat;
+}
+.banner.none-prize {
+  height: 446px;
+  background: url(../p1.png) center/cover no-repeat;
+}
+.page__frame{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+  background:white;
+  border-radius: 16px;
+  width: 100%;
+  padding-bottom: 20px;
+  border: solid 1px #cdcdcd;
+}
+.page__frame2 {
+  display: flex;
+  align-items: center;
+  width: 500px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.lottery__result{
+  display: flex;
+  align-items: center;
+  width: 500px;
+  margin: 0 auto;
+  flex-direction: column;
+  height: 252px;
+  justify-content:center;
+  background: white;
+}
+
+.lottery__intro{
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  border-bottom: solid 1px #cdcdcd;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.lottery__intro_content{
+  font-size: 16px;
+  flex: 1;
+  text-align: left;
+  padding: 0px 20px;
+  line-height: 1.5rem;
+}
+.lottery__intro_title{
+  font-size: 18px;
+  font-weight: bold;
+  width: 90px;
+  margin-left: 20px;
+}
+.lottery__btn{
+  width: 80%;
+  color: white;
+  background: #e62a45;
+  text-align: center;
+  padding: 16px 0px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin 0 auto
+}
+.hide{
+  display: none;
+}
+.section {
+  text-align: center;
+  margin-top: 60px;
+}
+.footer__bottom {
+  background: #35564b;
+  padding: 12px 0px;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+}
+.footer__top {
+  background: #e8efee;
+  padding: 32px;
+  color: #484848;
+}
+.footer__top .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.footer__site {
+  font-size: 36px;
+  color: #489846;
+}
+.footer__info div {
+  margin-top: 10px;
+  text-align: left;
+}
+
+footer {
+  margin-top: 48px;
+}
+h2 {
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #5ec1b6;
+  font-size: 24px;
+}
+p{
+  font-size: 36px;
+}
+
+@media(max-width: 768px) {
+  .navbar .wrapper {
+    height: 120px;
+    flex-direction:  column;
+    justify-content: space-between;
+    padding: 0px;
+  }
+  .navbar__list {
+    display: flex;
+    width: 100%;
+  }
+  .navbar__list li{
+    flex: 1;
+    margin-left: 0;
+    border-radius: 0;
+    text-align: center;
+  }
+  .navbar__site-name {
+    margin-top: 10px;
+  } 
+  .lottery__result{
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  flex-direction: column;
+  height: 50%;
+  justify-content:center;
+} 
+p{
+  font-size: 24px;
+} 
+.page__frame2 {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  flex-direction: column;
+}
+.lottery__result{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  flex-direction: column;
+  height: 80%;
+  justify-content:center;
+} 
+.lottery__intro_content{
+  font-size: 16px;
+  flex: 1;
+  text-align: left;
+  padding: 0px 20px;
+  line-height: 1.5rem;
+}
+.page__frame{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+  background:white;
+  border-radius: 16px;
+  width: 100%;
+  padding-bottom: 20px;
+  border: solid 1px #cdcdcd;
+  z-index:1;
+} 
+.lottery__result{
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  flex-direction: column;
+  height: 40%;
+  justify-content:center;
+  background: white;
+}
+.hide{
+  display: none;
+}
+.lottery__btn{
+  width: 80%;
+  color: white;
+  background: #e62a45;
+  text-align: center;
+  padding: 16px 0px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin 0 auto
+} 
+}
