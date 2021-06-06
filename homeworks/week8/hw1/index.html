@@ -83,60 +83,73 @@
    </footer>
    <script>
     const apiURL = 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery'
-    document.querySelector('.lottery__btn').addEventListener('click',() => {
+    const errMes = '系統不穩定，請再試一次'
+    function getPrize(cb){
       let xhr = new XMLHttpRequest()
       xhr.open('GET', apiURL, true)
-      xhr.onload = function(){
+      xhr.onload = function() {
         if(xhr.status >= 200 && xhr.status < 400) {
           let answer
           try {
             answer = JSON.parse(xhr.response)
           }catch(err) {
-            alert('系統不穩定，請再試一次')
-            console.log(err)
+            cb(errMes)
             return
           }
           if(!answer.prize) {
-            alert('系統不穩定，請再試一次')
+            cb(errMes)
             return
           }
-          let className
-          let title  
-          if(answer.prize === 'FIRST') {
-            className = 'first-prize'
-            title = '恭喜你中頭獎了！日本東京來回雙人遊！'
-          }else if (answer.prize === 'SECOND') {
-            className = 'second-prize'
-            title = '二獎！90 吋電視一台！'           
-          }else if (answer.prize === 'THIRD') {
-            className = 'third-prize'
-            title = '恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！'          
-          }else if (answer.prize === 'NONE') {
-            className = 'none-prize'
-            title = '銘謝惠顧'
-          }
-          document.querySelector('.banner').classList.add(className)
-          document.querySelector('.lottery__result').innerHTML = 
-          `  
-          <p class="prize"></p>
-          <div class="lottery__btn" onclick="javascript:window.location.reload()">
-          我要抽獎
-          </div>
-          `
-          document.querySelector('.prize').innerText= title
-          document.querySelector('.page__frame2').classList.add('hide')
-          document.querySelector('.lottery__result').classList.remove('hide') 
-
-        }else {
-          alert('系統不穩定，請再試一次')
+          cb(null,answer)
+        }else{
+          cb(errMes)
         }
-
       }
       xhr.onerror = function() {
-        alert('系統不穩定，請再試一次')
+        cb(errMes)
       }
-      xhr.send()
-     })
+      xhr.send()            
+    }
+    document.querySelector('.lottery__btn').addEventListener('click',() => {
+      getPrize(function(err,data){
+        if(err){
+          alert(err)
+          return
+        }
+        const prizes = {
+          FIRST: {
+            className: 'first-prize',
+            title: '恭喜你中頭獎了！日本東京來回雙人遊！'
+          },
+          SECOND: {
+            className: 'second-prize',
+            title: '二獎！90 吋電視一台！'
+          },
+          THIRD: {
+            className: 'third-prize',
+            title: '恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！'
+          },
+          NONE: {
+            className: 'none-prize',
+            title: '銘謝惠顧'
+          },            
+        }
+        const {className, title} = prizes[data.prize]
+        document.querySelector('.banner').classList.add(className)
+        document.querySelector('.lottery__result').innerHTML = 
+        `  
+        <p class="prize"></p>
+        <div class="lottery__btn" onclick="javascript:window.location.reload()">
+        我要抽獎
+        </div>
+        `
+        document.querySelector('.prize').innerText= title
+        document.querySelector('.page__frame2').classList.add('hide')
+        document.querySelector('.lottery__result').classList.remove('hide') 
+
+        })
+      })
+
    </script> 
  </body>
  </html> 
