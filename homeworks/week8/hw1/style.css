@@ -51,19 +51,19 @@
 }
 .banner.first-prize {
   height: 446px;
-  background: url(../p1.png) center/cover no-repeat;
+  background: url(../flight.jpg) center/cover no-repeat;
 }
 .banner.second-prize {
   height: 446px;
-  background: url(../p1.png) center/cover no-repeat;
+  background: url(../living.jpg) center/cover no-repeat;
 }
 .banner.third-prize {
   height: 446px;
-  background: url(../p1.png) center/cover no-repeat;
+  background: url(../youtube.jpg) center/cover no-repeat;
 }
 .banner.none-prize {
   height: 446px;
-  background: url(../p1.png) center/cover no-repeat;
+  background: url(../black.jpg) center/cover no-repeat;
 }
 .page__frame{
   display: flex;
@@ -91,7 +91,7 @@
   flex-direction: column;
   height: 252px;
   justify-content:center;
-  background: white;
+  color: white;
 }
 
 .lottery__intro{
