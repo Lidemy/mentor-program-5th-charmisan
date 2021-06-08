@@ -2,6 +2,7 @@ const URL = 'https://api.twitch.tv/kraken'
 const ClientID = 'axdp8afifeh04jhdgw099zhfel6473'
 // 錯誤處理
 const errMes = '系統不穩定，請再試一次'
+
 getGame((err, data) => {
   if (err) {
     alert(err)
