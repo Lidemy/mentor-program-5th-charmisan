@@ -17,7 +17,7 @@
   </header>
   <main class="board">
     <a class="board__btn" href="index.php">回留言板</a>
-    <a class="board__btn" href="login.php">註冊</a>  
+    <a class="board__btn" href="register.php">註冊</a>  
     <h1 class="board__title" >登入</h1>
     <?php
        if (!empty($_GET['errCode'])) {
