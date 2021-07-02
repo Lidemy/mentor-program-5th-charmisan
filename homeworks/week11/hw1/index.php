@@ -60,6 +60,9 @@
     <?php } else { ?>
      <a class="board__btn" href="logout.php">登出</a>
      <span class="board__btn update-nickname">編輯暱稱</span>
+     <?php if ($user && $user['role'] === 'ADMIN') { ?>
+      <a class="board__btn" href="admin.php">管理後台</a>
+     <?php  }  ?>
      <form class="hide board__nickname-form board__new-comment-form" method="POST" action="update_nickname.php">
       <div class="board__nickname">
         <span>新的暱稱：</span>

@@ -117,3 +117,6 @@ hr {
   border: 1px solid #5c9edc;
   padding: 10px;
 }
+table {
+  margin-top: 20px;
+}
