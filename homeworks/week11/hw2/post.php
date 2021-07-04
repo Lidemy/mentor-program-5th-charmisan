@@ -2,24 +2,27 @@
    session_start();
    require_once("conn.php");
    require_once("utils.php");
-   require_once("check_permission.php");
-   
+   $id = $_GET['id'];
+
    $stmt = $conn->prepare(
      'select '.
      'P.id as id, P.content as content, P.title as title, '.
      'P.created_at as created_at, U.nickname as nickname, U.username as username '.
-     'from charisma_posts as P ' .
+     'from charisma_posts as P '.
      'left join charisma_db as U on P.username = U.username '.
-     'where P.is_deleted = 0 ' .
-     'order by P.id desc '
+     'where P.id = ? '.
+     'order by P.id desc '  
    );
+   $stmt->bind_param('i', $id);
    $result = $stmt->execute();
 
    if (!$result) {
      die('Error:' . $conn->error);
    }
-   $result = $stmt->get_result();   
+   $result = $stmt->get_result();
+   $row = $result->fetch_assoc();  
 ?>
+
 <!DOCTYPE html>
 
 <html>
@@ -41,29 +44,22 @@
     </div>
   </section>
   <div class="container-wrapper">
-    <div class="container">
-      <div class="admin-posts">
-          <?php
-           while($row = $result->fetch_assoc()) {
-         ?>
-        <div class="admin-post">
-          <div class="admin-post__title">
-              <?php echo escape($row['title']); ?>
-          </div>
-          <div class="admin-post__info">
-            <div class="admin-post__created-at">
-              <?php echo escape($row['created_at']); ?>
-            </div>
-            <a class="admin-post__btn" href="update_post.php?id=<?php echo escape($row['id']); ?>">
-              編輯
-            </a>
-            <a class="admin-post__btn" href="handle_delete_post.php?id=<?php echo escape($row['id']); ?>">
-              刪除
-            </a>
+    <div class="posts">
+      <article class="post">
+        <div class="post__header">
+          <div><?php echo escape($row['title']); ?></div>
+          <div class="post__actions">
+            <?php if (!empty($_SESSION['username'])) { ?>
+              <a class="post__action" href="update_post.php?id=<?php echo escape($row['id']); ?>">編輯</a>
+            <?php } ?>  
           </div>
         </div>
-        <?php } ?>
-      </div>
+        <div class="post__info">
+          <?php echo escape($row['created_at']); ?>
+        </div>
+        <div class="post__content"><?php echo escape($row['content']); ?>
+        </div>
+      </article>
     </div>
   </div>
   <footer>Copyright © 2020 Who's Blog All Rights Reserved.</footer>
