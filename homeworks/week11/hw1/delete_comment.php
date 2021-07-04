@@ -8,7 +8,7 @@
      die('資料不齊全');
    }
    $id = $_GET['id'];
-   $username = $_SESSION['username']
+   $username = $_SESSION['username'];
    $user = getUserFromUsername($username);  
    $sql = "update charisma_user set is_deleted=1 where id=? and username =?";
       if (isAdmin($user)) {
