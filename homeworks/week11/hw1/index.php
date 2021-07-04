@@ -24,7 +24,7 @@
      'C.created_at as created_at, U.nickname as nickname, U.username as username '.
      'from charisma_user as C ' .
      'left join charisma_db as U on C.username = U.username '.
-     'where C.is_deleted is NULL ' .
+     'where C.is_deleted = 0 ' .
      'order by C.id desc ' .
      'limit ? offset ? ' 
    );
@@ -117,7 +117,7 @@
     <hr />
     <?php
       $stmt = $conn->prepare(
-         'select count(id) as count from charisma_user where is_deleted is NULL'
+         'select count(id) as count from charisma_user where is_deleted = 0'
       );
       $result = $stmt->execute();
       $result = $stmt->get_result();
