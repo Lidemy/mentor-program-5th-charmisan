@@ -41,16 +41,6 @@
    </header>
    <main class="board">      
        <h1 class="board__title">編輯留言</h1>
-       <?php
-         if (!empty($_GET['errCode'])) {
-           $code = $_GET['errCode'];
-           $msg = 'Error';
-           if ($code === '1') {
-             $msg = '資料不齊全';
-           }
-           echo '<h2 class="error">錯誤：' . $msg . '</h2>';
-         }
-       ?>
          <form class="board__new-comment-form" method="POST" action="handle_update_comment.php">
            <textarea name="content" rows="5"><?php echo $row['content'] ?></textarea>
            <input type="hidden" name="id" value="<?php echo $row['id'] ?>" />
