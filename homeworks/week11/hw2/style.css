@@ -257,4 +257,11 @@ footer {
   color: white;
   text-align: center;
 }
-
+.page-info {
+  text-align: center;
+}
+.pagenator {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+} 

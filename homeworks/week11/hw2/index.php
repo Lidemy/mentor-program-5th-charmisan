@@ -3,6 +3,13 @@
    require_once("conn.php");
    require_once("utils.php");
 
+   $page = 1;
+   if (!empty($_GET['page'])) {
+    $page = intval($_GET['page']);
+   }
+   $items_per_pages = 5;
+   $offset = ($page - 1) * $items_per_pages;
+
    $stmt = $conn->prepare(
      'select '.
      'P.id as id, P.content as content, P.title as title, '.
@@ -10,8 +17,10 @@
      'from charisma_posts as P ' .
      'left join charisma_db as U on P.username = U.username '.
      'where P.is_deleted = 0 ' .
-     'order by P.id desc ' 
+     'order by P.id desc '.
+     'limit ? offset ? '  
    );
+   $stmt->bind_param('ii', $items_per_pages, $offset);
    $result = $stmt->execute();
 
    if (!$result) {
@@ -63,6 +72,33 @@
           </article>
         <?php } ?>
     </div>
+  </div>
+  <?php
+  $stmt = $conn->prepare(
+     'select count(id) as count from charisma_posts where is_deleted = 0'
+  );
+  $result = $stmt->execute();
+  $result = $stmt->get_result();
+  $row = $result->fetch_assoc();
+  $count =  $row['count'];
+  $total_page = intval(ceil($count / $items_per_pages));
+
+  ?> 
+  <div class="page-info">
+    <span>總共有 <?php echo $count ?> 筆留言，頁數：</span>
+    <span><?php echo $page ?> / <?php echo $total_page ?></span>
+  </div>
+  <div class="pagenator">
+    
+    <?php if ($page !== 1) { ?>
+      <a href="index.php?page=1">首頁</a>
+      <a href="index.php?page=<?php echo $page - 1 ?>">上一頁</a>
+    <?php } ?>
+    <?php if ($page !== $total_page) { ?>  
+      <a href="index.php?page=<?php echo $page + 1 ?>">下一頁</a>
+      <a href="index.php?page=<?php echo $total_page ?>">最末頁</a>
+    <?php } ?>        
+    
   </div>
   <footer>Copyright © 2020 Who's Blog All Rights Reserved.</footer>
 </body>
