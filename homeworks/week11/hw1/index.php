@@ -70,7 +70,7 @@
       </div>
       <input class="board__sumit-btn" type="submit" />
      </form>
-     <h3>你好！<?php echo $user['nickname']; ?> </h3>
+     <h3>你好！<?php echo escape($user['nickname']); ?> </h3>
     <?php } ?>  
     <h1 class="board__title" >Comments</h1>
     <?php
