@@ -10,7 +10,7 @@
    $user = getUserFromUsername($_SESSION['username']);
    $username = $user['username'];
 
-   if (hasPermission($user, 'create', NULL)) {
+   if (!hasPermission($user, 'create', 0)) {
     header("Location: index.php");
     exit;
    }
