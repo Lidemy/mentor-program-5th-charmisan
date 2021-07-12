@@ -52,8 +52,8 @@
          }
        ?>
          <form class="board__new-comment-form" method="POST" action="handle_update_comment.php">
-           <textarea name="content" rows="5"><?php echo $row['content'] ?></textarea>
-           <input type="hidden" name="id" value="<?php echo $row['id'] ?>" />
+           <textarea name="content" rows="5"><?php echo escape( $row['content']) ?></textarea>
+           <input type="hidden" name="id" value="<?php echo escape( $row['id']) ?>" />
            <input class="board__submit-btn" type="submit" />
          </form>
    </main>
