@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+ <html>
+ <head>
+   <meta charset="utf-8">
+
+   <title>week12 留言板</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <style>
+     .card {
+      margin: 12px 0px;
+     }
+   </style>
+   <script>
+     function escape(toOutput){
+        return toOutput.replace(/\&/g, '&amp;')
+            .replace(/\</g, '&lt;')
+            .replace(/\>/g, '&gt;')
+            .replace(/\"/g, '&quot;')
+            .replace(/\'/g, '&#x27')
+            .replace(/\//g, '&#x2F');
+     }
+     function prependCommentToDOM(container, comment, isPrepend) {
+                const html = `
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">${escape(comment.nickname)}</h5>
+                      <p class="card-text">${escape(comment.content)}</p>
+                    </div>
+                  </div>
+            `
+            if (isPrepend) {
+                container.prepend(html)
+            } else {
+                container.append(html)
+            }
+                
+     }
+
+     function getCommentsAPI(site_key, before, cb) {
+      let url =`http://mentor-program.co/mtr04group3/charisma/week12/hw1/api_comments.php?site_key=${site_key}`
+      if (before) {
+        url += '&before=' + before
+      }
+      $.ajax({
+        url,
+      }).done(function(data) {
+        cb(data)
+      })
+     }
+
+
+
+     const site_key = 'charisma'
+     const loadMoreHMTL =`<button class="btn-primary load-more">載入更多</button>`
+     let lastId = null
+     let isEnd = false
+
+     $(document).ready(() => {
+        const commentDOM = $(".comments")
+        getComments()
+   
+        $('.comments').on('click', '.load-more', () => {
+
+          getComments()
+
+        })
+
+
+        $('.add-comment-form').submit(e => {
+          e.preventDefault()
+          const newCommentData = {
+              site_key: 'charisma',
+              nickname: $('input[name=nickname]').val(),
+              content: $('textarea[name=content]').val()
+          }
+          $.ajax({
+            type: 'POST',
+            url: 'http://mentor-program.co/mtr04group3/charisma/week12/hw1/api_add_comments.php',
+            data: newCommentData
+          }).done(function(data) {
+            if (!data.ok) {
+              alert(data.message)
+              return
+            }
+            nickname: $('input[name=nickname]').val('')
+            content: $('textarea[name=content]').val('')
+            prependCommentToDOM(commentDOM, newCommentData, true)
+           })
+          })
+      })
+
+      function getComments() {
+        $('.load-more').hide()
+        const commentDOM = $(".comments")
+        if (isEnd) {
+          return
+        }
+        getCommentsAPI(site_key, lastId, data => {
+          if (!data.ok) {
+            alert(data.message)
+            return
+          }
+          console.log(data) 
+          const comments = data.discussions
+          for(let comment of comments) {
+            prependCommentToDOM(commentDOM, comment)
+          }
+          let length = comments.length
+          if (length === 0) {
+            isEnd = true
+            $('.load-more').hide()
+          } else {
+            lastId = comments[length -1].id
+            $('.comments').append(loadMoreHMTL) 
+          }          
+                   
+        })      
+       }
+   </script>
+ </head>
+
+ <body>
+  <div class="container">
+    <form class="add-comment-form">
+      <div class="mb-3">
+        <label for="form-nickname" class="form-label">暱稱</label>
+        <input name="nickname" type="text" class="form-control" id="form-nickname">
+      </div>
+      <div class="mb-3">
+        <label for="content-textarea" class="form-label">留言內容</label>
+        <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">送出</button>
+    </form>
+    <div class="comments">
+
+    </div>
+  </div>
+ </body>
+ </html> 
